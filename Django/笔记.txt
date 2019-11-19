@@ -1,0 +1,146 @@
+先改ssh端口号默认是22
+放行所有端口
+使用XShell链接
+安装宝塔面板 记住随机给出的用户名和密码 设置端口号和路由
+
+http://47.107.255.xxx:8888/baota          宝塔面板
+
+进入宝塔面板管理 先安装环境
+nodejs mongodb mysql
+
+同时用宝塔面板开放一个ftp的端口 和根目录
+
+然后 window上面的项目在Linux上面跑报错 可能是导入模块的大小写和 模块文件本身大小写没匹配上
+
+使用koa作为后端框架
+
+不适用router模块的时候 返回页面参数要带上最后一个参数utf8 否则会进去默认是二进制 是下载html文件
+
+mongodb的服务启动的指令是 mongod --pathdbpath +路径/db目录
+默认的端口号是27017
+
+mongo是启动客户端
+
+koa2的项目名字 cdb
+开发环境时启动:先启动数据库服务端
+node cdb 
+就好了
+nodemoon的坑: 在Linux下面使用nodemoon 完全无法自动运行 一后台就自动中断
+使用pm2 和net差不多
+启动
+pm2 start cdb
+停止
+pm2 stop cdb/uid
+查看正在运行的node服务
+pm2 list
+
+cookies设置为汉字会报错 解决:
+ctx.cookies.set("username",(new Buffer(username)).toString('base64')
+相应的 session在验证时的解码:
+ctx.session = {username : (new Buffer(ctx.cookies.get("username"), 'base64')).toString(),
+
+win安装mysql5.7
+可以使用安装包或者zip
+设置环境变量 和 服务 
+开启mysql服务端  使用安装包的时候服务是自动安装好的 所以直接
+net start mysyq57 来开启服务
+如果是用zip安装 没安装服务
+可以用 mysqld来启动
+默认的端口号是3306
+
+使用Django模块:安装依赖:
+pip install pymysql -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install django==1.11 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+markdown
+
+使用pycharm 创建有app名字的Django项目
+
+这里又有一个坑 Django的源码之中有一个地方多了一个逗号 去掉
+
+然后是 配置文件里面csrf的那一行注释掉
+
+cdb配置文件
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,"static")
+]
+
+cdb的urls写
+from nanarino import views
+分配路由
+url(r'^index/', views.index)
+
+app的views写
+from django.shortcuts import HttpResponse,render,redirect
+
+
+cdb配置文件
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        "HOST":"127.0.0.1",
+        "PORT":3306,
+        'NAME':"****project",
+        "USER":"root",
+        "PASSWORD":"**********"
+    }
+}
+
+
+建立好和mysql的依赖
+app的__init__.py中写道
+import pymysql
+pymysql.install_as_MySQLdb()
+
+手动创建数据库
+
+orm操作全在app的models.py中
+class UserInfo(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(null=False,max_length=20) 
+
+在pycharm的自带的命令行中输入:
+python3 manage.py makemigrations     记录models.py的改动 记录到app的migration目录下(专业说法:迁移目录)
+python3 manage.py migrate            将改动翻译为sql语句去数据库执行
+这样就自动创建好了很多默认的表
+我们刚刚在models中输入的表的默认名字是 app名字_类名 也就是app_userinfo 默认全部小写了
+接下来就可以使用orm来进行对数据库的操作了
+
+python manage.py createsuperuser 生成超级管理员
+
+nohup python3 manage.py runserver 0.0.0.0:80 &  在Linux上启动
+
+
+vuepress 的bug:
+cnpm i webpack-dev-middleware@3.6.0 -D
+别用vuepress dev docs
+用npm run docs:dev
+
+
+安装cli
+cnpm i -g vue-cli
+
+vue -V
+2.9.6
+
+vue init webpack 项目名字
+搭建项目目录
+
+npm run dev 本地测试
+
+引入jq(2.x版本)
+输入 npm install jquery --save-dev 
+加入webpack对象：
+var webpack=require('webpack');
+在module.exports里面加入
+
+plugins: [
+  new webpack.ProvidePlugin({
+    $:"jquery",
+    jQuery:"jquery",
+    "windows.jQuery":"jquery"
+  })
+]
+在入口文件main.js中加入
+import $ from 'jquery'
