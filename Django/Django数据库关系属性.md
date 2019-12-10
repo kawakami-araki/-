@@ -73,3 +73,4 @@ class AreaInfo(models.Model):
 由一查多时使用字段名__set.all()进行查询
 
 由多查一时使用字段名查询
+

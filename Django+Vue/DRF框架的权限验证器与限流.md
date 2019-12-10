@@ -106,9 +106,9 @@
 
 
 
-### 自定义局部限流设置:
+### 局部限流设置:
 
-- 无论是自定义局部限流还是全局限流,都需要现在setting文件中进行配置,但是这个配置并不相同
+- 无论是局部限流还是全局限流,都需要现在setting文件中进行配置,但是这个配置并不相同
 
   - ```python
     REST_FRAMEWORK = {
@@ -119,6 +119,16 @@
     }
     ```
 
-  - 在定义局部限流时,不需要导入自带的限流模块
+  - 在进行局部限流时,不需要导入自带的限流模块
 
-- 
+  - ```python
+    from rest_framework.views import APIView
+    from rest_framework.throttling import UserRateThrottle
+    class Mythrottling(APIView):
+        throttling_class = [UserRateThrottle]
+        def get(self,request):
+            return Response('这是投票页面')
+    ```
+
+    
+
