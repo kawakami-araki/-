@@ -13,3 +13,4 @@
 在项目下出现的.vscode文件夹中,找到setting.json文件,并在其中加入这串代码
 
 如果没用,使用pip命令,下载pylint-django
+

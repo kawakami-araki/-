@@ -17,7 +17,7 @@ web自动化测试用的框架，通多代码实现对浏览器的控制，如�
 
 - 基本操作：
 
-  谷歌浏览器驱动程序下载地址：http://chromedriver.storeage.googleapis.con/index.html
+  [谷歌浏览器驱动程序下载地址](http://chromedriver.storeage.googleapis.con/index.html)
 
   将下载好的驱动程序放入谷歌浏览器文件包以及python。scripts中
 
