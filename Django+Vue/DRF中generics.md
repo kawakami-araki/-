@@ -1,3 +1,5 @@
+
+
 # generics
 
 1. 这模块中封装着GenericsAPIViews类,对APIViews进行了进一步的封装,比起APIViews,它的功能进一步扩展
